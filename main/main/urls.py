@@ -9,4 +9,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', content_views.main_page, name='main'),
     path('auth/', include('users.urls', namespace='users')),
+    path('profile/', include('people.urls', namespace='people')),
 ]

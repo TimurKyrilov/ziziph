@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>{% block title %}Заголовок{% endblock %}</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Профиль</h2>
+            <hr>
+
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Имя пользователя:</strong>
+                </div>
+                <div class="col-md-9">
+                    <p>{{ user.username }}</p>
+                </div>
+            </div>
+
+            {% if user_profile.gender %}
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <strong>Пол:</strong>
+                    </div>
+                    <div class="col-md-9">
+                        <p>{{ user_profile.gender }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if user_profile.age %}
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <strong>Возраст:</strong>
+                    </div>
+                    <div class="col-md-9">
+                        <p>{{ user_profile.age }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <a href="{% url 'people:edit_profile' %}">Редактировать профиль</a>
+                </div>
+            </div>
+
+            <div class="row">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Boostrap и Poper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-r2RGnJYdARdjvO5eA8z2wJAKFNYyo1BEAeZaa4M1K8r7J2ALGouu9cg72gZStbpE" crossorigin="anonymous"></script>
+
+</body>
+</html>
