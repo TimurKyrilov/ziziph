@@ -1,28 +1,22 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from .forms import ProfileForm
 from .models import Profile
 
 def profile(request, username):
     user = User.objects.get(username=username)
-    try:
-        user_profile = Profile.objects.get(user=user)
-    except Profile.DoesNotExist:
-        user_profile = None  # Обработайте случай, когда профиль не существует
+    user_profile, created = Profile.objects.get_or_create(user=user)
     return render(request, 'people/profile.html', {'user': user, 'user_profile': user_profile})
 
-
-@login_required
-def edit_profile(request):
-    user_profile = Profile.objects.get(user=request.user)
-
+def edit_profile(request, username):
+    user_profile = get_object_or_404(Profile, user__username=username)
+    
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
-            return redirect('people:profile', username=request.user.username)
     else:
         form = ProfileForm(instance=user_profile)
 
-    return render(request, 'people/edit_profile.html', {'form': form})
+    return render(request, 'people/edit_profile.html', {'form': form, 'username': username})
