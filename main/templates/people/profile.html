@@ -27,10 +27,11 @@
     <p class="mb-2">Пол: не указан</p>
     </strong>
   {% endif %}
-
-  <div class="row">
-    <a href="{% url 'people:edit_profile' username=user.username %}" class="btn btn-secondary">Редактировать профиль</a>
-  </div>
+  {% if user.is_authenticated %}
+    <div class="row">
+      <a href="{% url 'people:edit_profile' username=user.username %}" class="btn btn-secondary">Редактировать профиль</a>
+    </div>
+  {% endif %}
 </div>
 
 {% endblock %}

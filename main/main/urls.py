@@ -10,6 +10,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', content_views.main_page, name='main'),
     path('auth/', include('users.urls', namespace='users')),
-    path('', include('people.urls', namespace='people')),
+    path('profile/', include('people.urls', namespace='people')),
 ]
 
