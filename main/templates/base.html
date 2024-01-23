@@ -2,14 +2,14 @@
 <title>{% block title %}Название тут{% endblock %}</title>
 
 <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
-  <a class="navbar-brand" href="{% url 'main' %}">Главная</a>
+  <a class="navbar-brand" href="/home/">Главная</a>
   <ul class="nav nav-pills">
     {% if user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link" href="/auth/logout/">Выход</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'people:profile' user.username %}">{{ user.username }}</a>
+        <a class="nav-link" href="{% url 'people:profile' request.user %}">{{ request.user }}</a>
       </li>
     {% else %}
       <li class="nav-item">

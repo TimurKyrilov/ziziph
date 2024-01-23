@@ -27,7 +27,7 @@
     <p class="mb-2">Пол: не указан</p>
     </strong>
   {% endif %}
-  {% if user.is_authenticated %}
+  {% if request.user == user_profile.user %}
     <div class="row">
       <a href="{% url 'people:edit_profile' username=user.username %}" class="btn btn-secondary">Редактировать профиль</a>
     </div>

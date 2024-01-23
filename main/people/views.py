@@ -12,6 +12,9 @@ def profile(request, username):
 def edit_profile(request, username):
     user_profile = get_object_or_404(Profile, user__username=username)
     
+    if request.user != user_profile.user:
+        return render(request, 'Content/access_denied.html')
+    
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=user_profile)
         if form.is_valid():
