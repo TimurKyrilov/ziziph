@@ -7,7 +7,7 @@ from .forms import CustomUserCreationForm
 class RegistrationView(CreateView):
     template_name = "users/signup.html"
     form_class = CustomUserCreationForm
-    success_url = '/auth/profile/<str:username>/'
+    success_url = '/home/'
 
 def logout_view(request):
     logout(request)

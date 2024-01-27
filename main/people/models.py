@@ -8,7 +8,12 @@ class Profile(models.Model):
         ('M', 'М'),
         ('Ж', 'Ж'),
     ]
+    Belie_Chorniy = [
+        ("Ч", "Ч"),
+        ("Б", "Б"),
+    ]
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
+    Beli_ili_chorniy = models.CharField(max_length=1, choices=Belie_Chorniy, blank=True, null=True)
 
     def __str__(self):
         return self.user.username

@@ -4,4 +4,5 @@ app_name = 'Content'
 
 urlpatterns = [
     path('home/', content_views.main_page, name='home'),
+    path('', content_views.redirecting_page, name='redirect'),
 ]

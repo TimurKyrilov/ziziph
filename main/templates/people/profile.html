@@ -19,19 +19,24 @@
   {% endif %}
 
   {% if user_profile.gender %}
-    <strong>
-    <p class="mb-2">Пол: {{ user_profile.gender }}</p>
-    </strong>
-  {% else %}
-    <strong>
-    <p class="mb-2">Пол: не указан</p>
-    </strong>
-  {% endif %}
-  {% if request.user == user_profile.user %}
-    <div class="row">
-      <a href="{% url 'people:edit_profile' username=user.username %}" class="btn btn-secondary">Редактировать профиль</a>
-    </div>
-  {% endif %}
+  <strong>
+  <p class="mb-2">Пол: {{ user_profile.gender }}</p>
+  </strong>
+{% else %}
+  <strong>
+  <p class="mb-2">Пол: не указан</p>
+  </strong>
+{% endif %}
+{% if user_profile.Beli_ili_chorniy %}
+  <strong>
+  <p class="mb-2">Цвет: {{ user_profile.Beli_ili_chorniy }}</p>
+  </strong>
+{% else %}
+  <strong>
+  <p class="mb-2">Цвет: не указан</p>
+  </strong>
+{% endif %}
+
 </div>
 
 {% endblock %}
