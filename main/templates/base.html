@@ -2,12 +2,12 @@
 <title>{% block title %}Название тут{% endblock %}</title>
 
 <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
-  <a class="navbar-brand" href="/home/">Главная</a>
+  <a class="navbar-brand" href="{% url 'content:home' %}">Главная</a>
   <ul class="nav nav-pills">
-    {% if request.user %}
+    {% if user.is_authenticated %}
     <li class="nav-item">
-      <a class="nav-link" href="">Создать +</a>
-    </li>
+      <a class="nav-link" href="{% url 'content:create_post' user.username %}">Создать +</a>
+    </li>    
       <li class="nav-item">
         <a class="nav-link" href="/auth/logout/">Выход</a>
       </li>

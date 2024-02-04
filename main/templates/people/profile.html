@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-<title>{% block title %}Профиль пользователя: {{ user.username }}{% endblock %}</title>
+
+{% block title %}Профиль пользователя: {{ user.username }}{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
   <h2 class="mt-4 mb-4">Профиль пользователя: {{ user.username }}</h2>
@@ -8,35 +10,23 @@
     {% csrf_token %}
     {{ form.as_p }}
   </form>
-  {% if user_profile.age %}
-    <strong>
-    <p class="mb-2">Возраст: {{ user_profile.age }}</p>
-    </strong>
-  {% else %}
-    <strong>
-    <p class="mb-2">Возраст: не указан</p>
-    </strong>
+
+  <strong>
+    <p class="mb-2">Возраст: {{ user_profile.age|default:"не указан" }}</p>
+  </strong>
+
+  <strong>
+    <p class="mb-2">Пол: {{ user_profile.gender|default:"не указан" }}</p>
+  </strong>
+
+  <strong>
+    <p class="mb-2">Цвет: {{ user_profile.Beli_ili_chorniy|default:"не указан" }}</p>
+  </strong>
+
+  {% if user.is_authenticated and request.user == user_profile.user %}
+    <div class="row">
+      <a href="{% url 'people:edit_profile' username=user.username %}" class="btn btn-secondary">Редактировать профиль</a>
+    </div>
   {% endif %}
-
-  {% if user_profile.gender %}
-  <strong>
-  <p class="mb-2">Пол: {{ user_profile.gender }}</p>
-  </strong>
-{% else %}
-  <strong>
-  <p class="mb-2">Пол: не указан</p>
-  </strong>
-{% endif %}
-{% if user_profile.Beli_ili_chorniy %}
-  <strong>
-  <p class="mb-2">Цвет: {{ user_profile.Beli_ili_chorniy }}</p>
-  </strong>
-{% else %}
-  <strong>
-  <p class="mb-2">Цвет: не указан</p>
-  </strong>
-{% endif %}
-
 </div>
-
 {% endblock %}
