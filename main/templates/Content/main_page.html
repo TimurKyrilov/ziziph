@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <h5 class="card-subtitle">{{ post.theme }}</h5>
                             <p class="card-text">{{ post.text|truncatechars:50 }}</p>
-                            <a href="{% url 'content:post_detail' username=post.user.username pk=post.pk %}" class="card-link">текст</a>
+                            <strong><a href="{% url 'content:post_detail' username=post.user.username pk=post.pk %}" class="card-link">Читать полностью..</a></strong>
                         </div>
                     </div>
                 {% endfor %}
