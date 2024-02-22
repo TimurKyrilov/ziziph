@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 class Posts(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     author = models.CharField(max_length=20)
     theme = models.CharField(max_length=20)
     text = models.TextField()

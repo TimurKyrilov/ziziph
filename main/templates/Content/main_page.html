@@ -9,8 +9,9 @@
                 {% for post in posts %}
                     <div class="card m-3" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ post.theme }}</h5>
-                            <p class="card-text">{{ post.text }}</p>
+                            <h5 class="card-subtitle">{{ post.theme }}</h5>
+                            <p class="card-text">{{ post.text|truncatechars:50 }}</p>
+                            <a href="{% url 'content:post_detail' username=post.user.username pk=post.pk %}" class="card-link">текст</a>
                         </div>
                     </div>
                 {% endfor %}

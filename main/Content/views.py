@@ -1,14 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy
-from django.http import request
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.views.generic import CreateView
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView, DetailView
 from .forms import PostsForm
 from .models import Posts
-from people.models import Profile
-
 
 def main_page(request):
     posts = Posts.objects.all()
@@ -26,6 +19,11 @@ class PostsCreateView(CreateView):
     template_name = 'Content/create_post.html'
     success_url = '/home/'
 
-    def form_valid(self, form):
-        form.instance.user_id = self.request.user.id
+    def form_valid(self, form):  
+    
+        form.instance.user = self.request.user
         return super().form_valid(form)
+
+class PostsDetailView(DetailView):
+    model = Posts
+    template_name = "Content/Posts_detail.html"
