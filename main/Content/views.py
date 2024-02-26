@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
 from .forms import PostsForm
 from .models import Posts
-from .models import User
 
 def main_page(request):
     posts = Posts.objects.all()
