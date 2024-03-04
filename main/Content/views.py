@@ -1,6 +1,7 @@
-from django.http import Http404
-from django.shortcuts import render, redirect
+from django.http import Http404, JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView, DetailView
+from .serializers import PostsSerializer
 from .forms import PostsForm
 from .models import Posts
 
@@ -38,3 +39,17 @@ class PostsCreateView(CreateView):
 class PostsDetailView(DetailView):
     model = Posts
     template_name = "Content/Posts_detail.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['username'] = self.object.user.username
+        context['pk'] = self.object.pk
+        return context
+
+class GetView(CreateView):
+    def get_api(self, request, *args, **kwargs):
+        post = get_object_or_404(Posts, pk=kwargs['pk'])
+        serializer = PostsSerializer(post)
+        return JsonResponse(serializer.data)
+
+    def get(self, request, *args, **kwargs):
+        return self.get_api(request, *args, **kwargs)

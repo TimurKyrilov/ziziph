@@ -15,6 +15,11 @@
                 <div class="card-body">
                     <p class="card-text">{{ object.text }}</p>
                 </div>
+                <div class="card-body">
+                    <strong>
+                    <a href="{% url 'content:get_api' username=username pk=pk %}">api</a>
+                    </strong>
+                </div>
             </div>
         </div>
     </div>
