@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'api.apps.ApiConfig',
     'people.apps.PeopleConfig',
     'users.apps.UsersConfig',
     'Content.apps.ContentConfig',
