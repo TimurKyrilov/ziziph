@@ -13,7 +13,7 @@ urlpatterns = [
     path('auth/', include('users.urls', namespace='users')),
     path('profile/', include('people.urls', namespace='people')),
     path('', include('Content.urls', namespace='content')),
-    path('api', include(router.urls))
+    path('api/', include(router.urls))
 ]
 
  
